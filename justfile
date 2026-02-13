@@ -1,32 +1,37 @@
 # Justfile for Parlez - a translation practice app
 # Run commands with: just <command>
 
-# Install dependencies and setup playwright browsers
+# Install all dependencies
 setup:
-    uv sync
-    uv run playwright install
+    cd backend && uv sync
+    cd backend && uv run playwright install
+    cd frontend && npm install
 
-# Start development server with hot reload on http://localhost:8000
-dev:
-    uv run uvicorn app.main:app --reload
+# Start backend dev server on http://localhost:8000
+backend:
+    cd backend && uv run uvicorn app.main:app --reload
 
-# Run all tests with pytest
+# Start frontend dev server on http://localhost:5173
+frontend:
+    cd frontend && npm run dev
+
+# Run backend tests
 test:
-    uv run pytest
+    cd backend && uv run pytest
 
-# Format code with black and auto-fix ruff issues
+# Format backend code
 fmt:
-    uv run black .
-    uv run ruff check --fix .
+    cd backend && uv run black .
+    cd backend && uv run ruff check --fix .
 
-# Check code style without making changes
+# Lint backend code
 lint:
-    uv run ruff check .
-    uv run black --check .
+    cd backend && uv run ruff check .
+    cd backend && uv run black --check .
 
-# Run tests with coverage report
+# Run tests with coverage
 test-cov:
-    uv run pytest --cov=app --cov-report=term-missing
+    cd backend && uv run pytest --cov=app --cov-report=term-missing
 
 # Clean Python cache files
 clean:
