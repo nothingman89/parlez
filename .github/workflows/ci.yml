@@ -7,6 +7,9 @@ on:
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v4
