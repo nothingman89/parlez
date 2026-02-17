@@ -44,6 +44,9 @@ jobs:
       - name: Install Python dependencies
         run: uv sync --extra dev
         working-directory: ./backend
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - name: Start backend
         run: uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 &
         working-directory: ./backend
