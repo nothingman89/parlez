@@ -18,7 +18,7 @@ jobs:
         run: uv sync --extra dev
         working-directory: ./backend
       - name: Run tests
-        run: uv run pytest --alluredir=allure-results
+        run: uv run pytest tests/unit/ --alluredir=allure-results
         working-directory: ./backend
       - name: Generate Allure report
         if: always()
@@ -48,9 +48,6 @@ jobs:
       - name: Install Python dependencies
         run: uv sync --extra dev
         working-directory: ./backend
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -71,27 +68,24 @@ jobs:
             curl -s http://localhost:8000/health && break
             sleep 2
           done
-      - name: Install Playwright
-        run: npm ci
-        working-directory: ./backend/tests
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-        working-directory: ./backend/tests
+        run: uv run playwright install --with-deps chromium
+        working-directory: ./backend
       - name: Run integration tests
-        run: npx playwright test integration/ --reporter=allure-playwright
-        working-directory: ./backend/tests
+        run: uv run pytest tests/integration/ --alluredir=allure-results
+        working-directory: ./backend
       - name: Generate Allure report
         if: always()
         run: |
           npm install -g allure-commandline
           allure generate allure-results --clean -o allure-report
-        working-directory: ./backend/tests
+        working-directory: ./backend
       - name: Upload Allure report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: integration-test-allure-report
-          path: backend/tests/allure-report
+          path: backend/allure-report
 
   publish-reports:
     needs: [unit-tests, integration-tests]
