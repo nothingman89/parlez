@@ -4,12 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          950: '#070F1A',
-          900: '#0D1B2A',
-          800: '#152336',
-          700: '#1E3248',
+        cerulian: {
+          400: '#6A8FAA',
+          500: '#4A6D8C',
+          600: '#3D5A7A',
+          700: '#2E4760',
         },
+        vermillion: '#B84030',
+        glaucous: '#8A9870',
         cream: {
           50: '#FFFDF9',
           100: '#FAF6F0',

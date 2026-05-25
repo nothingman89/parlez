@@ -69,20 +69,20 @@ export default function Sentences() {
 
   return (
     <div>
-      <h1 className="text-4xl font-semibold text-navy-900 mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+      <h1 className="text-6xl font-bold text-navy-900 mb-2">
         Phrases
       </h1>
-      <p className="text-base text-gray-400 mb-10">Pratiquez la traduction de l'anglais vers le français.</p>
+      <p className="text-xl text-gray-500 mb-10">Pratiquez la traduction de l'anglais vers le français.</p>
 
       {/* Form */}
       <div className="bg-white rounded-2xl border border-cream-200 shadow-sm px-8 py-7 mb-10">
         <div className="flex flex-col gap-4">
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <label className="block text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
               Sujet à pratiquer
             </label>
             <input
-              className="w-full bg-cream-50 border border-cream-200 rounded-lg px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-gold-400 placeholder-gray-300 transition-colors"
+              className="w-full bg-cream-50 border border-cream-200 rounded-lg px-4 py-3 text-base text-gray-800 focus:outline-none focus:border-gold-400 placeholder-gray-300 transition-colors"
               placeholder="Ex : la nourriture, les voyages, les émotions…"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
@@ -92,7 +92,7 @@ export default function Sentences() {
 
           <div className="flex items-center gap-6 flex-wrap">
             <div>
-              <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+              <label className="block text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
                 Niveau
               </label>
               <div className="flex gap-1.5">
@@ -100,7 +100,7 @@ export default function Sentences() {
                   <button
                     key={l}
                     onClick={() => setLevel(l)}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${
                       level === l
                         ? 'bg-navy-900 text-white'
                         : 'bg-cream-50 border border-cream-200 text-gray-600 hover:border-gold-400 hover:text-navy-900'
@@ -125,7 +125,7 @@ export default function Sentences() {
               <button
                 onClick={handleGenerate}
                 disabled={!topic.trim() || generating}
-                className="px-5 py-2.5 bg-navy-900 text-white text-sm font-medium rounded-lg hover:bg-navy-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
+                className="px-5 py-2.5 bg-navy-900 text-white text-base font-medium rounded-lg hover:bg-navy-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
               >
                 {generating ? 'Génération…' : 'Générer'}
               </button>
@@ -144,7 +144,7 @@ export default function Sentences() {
       {sentences.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            <p className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
               10 phrases — {level}
             </p>
             <button
@@ -158,11 +158,11 @@ export default function Sentences() {
           <div className="flex flex-col gap-4">
             {sentences.map((sentence, i) => (
               <div key={i} className="bg-white rounded-xl border border-cream-200 shadow-sm overflow-hidden">
-                <div className="bg-navy-900 px-5 py-4 border-l-4 border-gold-500">
-                  <p className="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-1">
+                <div className="bg-[#8A9870] px-5 py-4 border-l-4 border-gold-500">
+                  <p className="text-sm font-semibold text-gold-400 uppercase tracking-wider mb-1">
                     {i + 1}. Traduisez en français
                   </p>
-                  <p className="text-white text-base" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  <p className="text-white text-xl">
                     {sentence.text}
                   </p>
                 </div>
@@ -195,8 +195,8 @@ export default function Sentences() {
                       <div className="flex items-center gap-3">
                         <span className="text-green-500 text-xl">✓</span>
                         <div>
-                          <p className="text-sm font-medium text-green-700">Parfait !</p>
-                          <p className="text-sm text-gray-600 mt-0.5">{sentence.input}</p>
+                          <p className="text-base font-medium text-green-700">Parfait !</p>
+                          <p className="text-base text-gray-600 mt-0.5">{sentence.input}</p>
                         </div>
                       </div>
                     ) : (
@@ -205,10 +205,10 @@ export default function Sentences() {
                           <span className="text-red-400 text-base">✗</span>
                           <span className="text-sm font-semibold text-red-500">{sentence.result.score}%</span>
                         </div>
-                        <p className="text-xs text-gray-500 mb-1">
+                        <p className="text-sm text-gray-500 mb-1">
                           Votre réponse : <span className="text-gray-700">{sentence.input}</span>
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-sm text-gray-500">
                           Traduction correcte :{' '}
                           <span className="text-navy-900 font-medium">{sentence.result.correct_translation}</span>
                         </p>
