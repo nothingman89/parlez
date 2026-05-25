@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import logo from '../assets/parlez.png'
+import logo from '../assets/Asterix.webp'
 
 const NAV_LINKS = [
   { to: '/', label: 'Tableau de bord' },
@@ -13,13 +13,13 @@ export default function Layout() {
   return (
     <div className="flex h-screen bg-cream-100" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Sidebar */}
-      <aside className="w-72 shrink-0 bg-navy-900 flex flex-col">
+      <aside className="w-72 shrink-0 bg-[#3D5A7A] flex flex-col">
         {/* Brand */}
-        <div className="flex flex-col items-center pt-10 pb-8 px-6 border-b border-navy-700">
-          <img src={logo} alt="parlez logo" className="h-16 mb-4 opacity-90" />
+        <div className="flex flex-col items-center pt-10 pb-8 px-6 border-b border-[#2E4760]">
+          <img src={logo} alt="Asterix" className="h-48 mb-4 rounded-2xl" />
           <span
-            className="text-cream-200 text-2xl tracking-widest"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            className="text-white text-3xl tracking-widest"
+            style={{ fontFamily: "system-ui, sans-serif", fontWeight: 700, letterSpacing: '0.2em' }}
           >
             ~parlez~
           </span>
@@ -27,7 +27,7 @@ export default function Layout() {
 
         {/* Nav */}
         <nav className="flex flex-col pt-6 px-4 gap-1">
-          <span className="px-3 mb-2 text-xs font-semibold tracking-widest text-cream-200/30 uppercase">
+          <span className="px-3 mb-2 text-xs font-semibold tracking-widest text-white/50 uppercase">
             Navigation
           </span>
           {NAV_LINKS.map(({ to, label }) => (
@@ -38,8 +38,8 @@ export default function Layout() {
               className={({ isActive }) =>
                 `px-4 py-3.5 text-base rounded-lg transition-colors ${
                   isActive
-                    ? 'bg-navy-800 text-gold-400 font-semibold border-l-2 border-gold-500'
-                    : 'text-cream-200/70 hover:bg-navy-800 hover:text-cream-200'
+                    ? 'bg-[#4A6D8C] text-gold-400 font-semibold border-l-2 border-[#B84030]'
+                    : 'text-white/80 hover:bg-[#4A6D8C] hover:text-white'
                 }`
               }
             >
@@ -49,7 +49,7 @@ export default function Layout() {
         </nav>
 
         <div className="mt-auto px-5 pb-8">
-          <button className="w-full px-4 py-3 bg-navy-800 border border-navy-700 rounded-xl text-sm font-medium text-cream-200/80 hover:text-cream-200 hover:bg-navy-700 hover:border-navy-600 transition-colors">
+          <button className="w-full px-4 py-3 bg-[#4A6D8C] border border-[#2E4760] rounded-xl text-sm font-medium text-white/80 hover:text-white hover:bg-[#6A8FAA] hover:border-[#4A6D8C] transition-colors">
             Se connecter
           </button>
         </div>
